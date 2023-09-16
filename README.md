@@ -1,2 +1,2 @@
 # manpasi
-Sweet and easy to use rest api writing library
+Sweet and easy to use rest api writing library like its name written in Bun
