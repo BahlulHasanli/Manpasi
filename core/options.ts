@@ -37,7 +37,3 @@ export function regexFolder(folder: any) {
     dynamic: dynamic
   }
 }
-
-export function isEmptyObj(data: any) {
-  return Object.keys(data).length === 0 && data.constructor === Object
-}

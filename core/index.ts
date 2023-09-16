@@ -1,4 +1,4 @@
-import { json, flatList, isEmptyObj } from "@/core/options";
+import { json, flatList } from "@/core/options";
 import type CRUD from '@/types/crud.type'
 import type ManpasiResponse from "@/types/manpasiReponse.type";
 
