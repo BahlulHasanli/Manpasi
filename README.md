@@ -21,6 +21,9 @@ export default define('GET', () => {
   })
 })
 ```
+```sh
+bun index.ts
+```
 
 Then let's send http://localhost:3000/ get request via curl or Postman. That's it! You will get this as reponse output:
 ```json
