@@ -8,7 +8,7 @@ export function Manpasi(defineRoutes: any) {
       const url = new URL(req.url);
 
       const defineRouteObject: any = flatList(defineRoutes)
-        .find((route: { name: string, method: any, dynamic: Boolean, file: Function }) => {
+        .find((route: { name: string, method: any, dynamic: Boolean, parentFolder: string, file: Function }) => {
           if (url.pathname.endsWith("/")) {
             url.pathname = url.pathname.replace(/\/$/, "");
           }
@@ -16,7 +16,7 @@ export function Manpasi(defineRoutes: any) {
           const queryParams = new URLSearchParams(url.search);
 
           if (route.method === req.method) {
-            if (route.dynamic) {
+            if (route.dynamic && url.pathname.search(route.parentFolder) === 1) {
               req.routeParam = url.pathname.split("/").pop();
               return true
             }

@@ -23,14 +23,15 @@ import { regexFolder } from '@/core/options';
           const subFolderFiles = fs.readdirSync(subFolderPath);
 
           subDefineRoutes = await Promise.all(subFolderFiles.map(async (subFolder) => {
-            const subFoldermatched = regexFolder(subFolder)
+            const subFolderFileMatched = regexFolder(subFolder)
             const file = await import(`${dirname}/${folder}/${subFolder}`)
 
             return {
-              name: `/${folder}${subFoldermatched.match[1] === 'index' ? '' : `/${subFoldermatched.match[1]}`}`,
-              method: (subFoldermatched.match[2] as string).toUpperCase(),
+              name: `/${folder}${subFolderFileMatched.match[1] === 'index' ? '' : `/${subFolderFileMatched.match[1]}`}`,
+              method: (subFolderFileMatched.match[2] as string).toUpperCase(),
               file: file.default,
-              dynamic: subFoldermatched.dynamic
+              dynamic: subFolderFileMatched.dynamic,
+              parentFolder: folder
             };
           }))
         }
