@@ -51,7 +51,7 @@ Your filename does not have to be "index", you can put any name you want, but it
 The library will be very nice with new updates.
 
 ## Developing
-This repo uses [Bun](https://bun.sh). To initiate the project bun index.ts
+This repo uses [Bun](https://bun.sh). To initiate the project `bun index.ts`
 
 ## License
 [MIT](https://github.com/BahlulHasanli/Manpasi/blob/main/LICENSE)
