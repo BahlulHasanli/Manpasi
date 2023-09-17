@@ -49,3 +49,9 @@ For example: `/api/user/index.get.ts` or `/api/user/index.post.ts`
 Your filename does not have to be "index", you can put any name you want, but it `must have .get, .post, .update, .put, .delete, or .patch` at the end because these are our method names for our crud operations. For example: user.get.ts, user.post.ts, user.update.ts.
 
 The library will be very nice with new updates.
+
+## Developing
+This repo uses [Bun](https://bun.sh). To initiate the project bun index.ts
+
+## License
+[MIT](https://github.com/BahlulHasanli/Manpasi/blob/main/LICENSE)
