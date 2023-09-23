@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "bundler",
@@ -8,6 +10,9 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "composite": true,
+    "filesGlob": [
+      "**/*.ts"
+    ],
     "strict": true,
     "downlevelIteration": true,
     "skipLibCheck": true,
@@ -20,8 +25,12 @@
     ],
     "baseUrl": "./",
     "paths": {
-        "@/core*": ["core/*"],
-        "@/types*": ["types/*"],
+      "@/core*": [
+        "core/*"
+      ],
+      "@/types*": [
+        "types/*"
+      ],
     }
   }
 }

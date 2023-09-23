@@ -2,7 +2,7 @@ export function json(data: any) {
   return JSON.stringify(data);
 }
 
-export function flatList(dizi: Array<[]>) {
+export function flatList(data: Array<[]>) {
   let routeList: any[] = [];
 
   function recursiveFlat(arr: any) {
@@ -15,7 +15,7 @@ export function flatList(dizi: Array<[]>) {
     }
   }
 
-  recursiveFlat(dizi);
+  recursiveFlat(data);
 
   return routeList;
 }
