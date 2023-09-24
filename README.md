@@ -23,9 +23,6 @@ export default define(() => {
   })
 })
 ```
-```sh
-bun index.ts
-```
 
 Then let's send http://localhost:3000/ get request via curl or Postman. That's it! You will get this as reponse output:
 ```json
@@ -38,6 +35,31 @@ Then let's send http://localhost:3000/ get request via curl or Postman. That's i
     }
 ]
 ```
+
+Usage for POST
+
+```js
+// /api/user/index.post.ts
+
+import { ManpasiResponse, define } from '@/core/index'
+import { json } from '@/core/options'
+import ManpasiHTTP from "@/types/http.type";
+
+export default define((req: ManpasiHTTP.request) => {
+  return ManpasiResponse(json(req.bodyData), {
+    status: 200
+  })
+})
+```
+
+```json
+{
+    "name": "Jett Madison 2",
+    "age": "33"
+}
+```
+
+
 
 
 ### It's not over yet mate, where are you going? :) 
