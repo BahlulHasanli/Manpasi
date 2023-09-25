@@ -1,6 +1,6 @@
 # Manpasi
 
-<img src="https://github.com/BahlulHasanli/Manpasi/assets/15572553/292c6ab8-8c53-49a0-bccb-3e0799a95630" width="380">
+<img src="https://github.com/BahlulHasanli/Manpasi/assets/15572553/292c6ab8-8c53-49a0-bccb-3e0799a95630" width="280">
 
 A rest api write library as cute and tough as its name
 
