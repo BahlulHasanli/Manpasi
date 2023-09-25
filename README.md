@@ -1,8 +1,8 @@
 # Manpasi
 
-<img src="https://github.com/BahlulHasanli/manpasi/assets/15572553/259f9f6f-f297-4a18-953b-b9ee9d170196" width="300" height="350">
+<img src="https://github.com/BahlulHasanli/Manpasi/assets/15572553/292c6ab8-8c53-49a0-bccb-3e0799a95630" width="280">
 
-Sweet and easy to use rest api writing library like its name written in Bun
+A rest api write library as cute and tough as its name
 
 
 ## Write your own rest api by defining your route in /api/ folder
