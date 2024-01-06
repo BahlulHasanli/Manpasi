@@ -1,14 +1,17 @@
-import { json, flatList } from "@/core/options";
-import type ManpasiResponse from "@/types/manpasiReponse.type";
-import ManpasiHTTP from "@/types/http.type";
+import { json, flatList } from '@/core/options';
+import type ManpasiResponse from '@/types/manpasiReponse.type';
+import ManpasiHTTP from '@/types/http.type';
+import { ManpasiList } from '@/types/core.type';
 
-export function Manpasi(defineRoutes: any) {
+export function Manpasi(defineRoutes: ManpasiList[]) {
   return Bun.serve({
+    port: 3000,
     fetch(req: ManpasiHTTP.request) {
       const url = new URL(req.url);
+      let pathname = url.pathname;
 
-      if (url.pathname.endsWith("/")) {
-        url.pathname = url.pathname.replace(/\/$/, "");
+      if (pathname.endsWith('/')) {
+        pathname = url.pathname.replace(/\/$/, '');
       }
 
       const queryParams = new URLSearchParams(url.search);
@@ -19,7 +22,7 @@ export function Manpasi(defineRoutes: any) {
         (item: any) =>
           item.name !== item.pathname &&
           item.method === req.method &&
-          item.dynamic &&
+          item.dynamic.has &&
           item.parentFolder === url.pathname.split('/')[1],
         (item: any) => item.name === url.pathname && item.method !== req.method,
       ];
@@ -28,6 +31,17 @@ export function Manpasi(defineRoutes: any) {
         const routeMatch = flatList(defineRoutes).find(condition);
 
         if (routeMatch) {
+          if (routeMatch.dynamic.has) {
+            const dynamicPathname = routeMatch.dynamic.name;
+            const dynamicPathnameParam = decodeURIComponent(
+              pathname.split('/')[2]
+            ).replaceAll(' ', '');
+
+            req.param = {
+              [dynamicPathname]: dynamicPathnameParam,
+            };
+          }
+
           if (condition === conditions[2]) {
             return ManpasiResponse(json({ message: 'Method not allowed' }), {
               status: 405,
@@ -40,7 +54,7 @@ export function Manpasi(defineRoutes: any) {
 
       return ManpasiResponse(json({ message: 'Not found!' }), {
         status: 404,
-      })
+      });
     },
   });
 }
@@ -48,7 +62,7 @@ export function Manpasi(defineRoutes: any) {
 export function ManpasiResponse(data: any, { type = 'json', status = 200 }) {
   return new Response(data, {
     headers: { 'content-type': type },
-    status: status
+    status: status,
   }) satisfies ManpasiHTTP.response;
 }
 
@@ -59,9 +73,9 @@ export function define(cb: any) {
 
       req.bodyData = bodyParser;
     } else {
-      req.bodyData = {}
+      req.bodyData = {};
     }
 
-    return cb(req)
-  }
+    return cb(req);
+  };
 }
