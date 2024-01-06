@@ -1,8 +1,10 @@
+import { ManpasiList } from '@/types/core.type';
+
 export function json(data: any) {
   return JSON.stringify(data);
 }
 
-export function flatList(data: Array<[]>) {
+export function flatList(data: ManpasiList[]) {
   let routeList: any[] = [];
 
   function recursiveFlat(arr: any) {
@@ -20,13 +22,12 @@ export function flatList(data: Array<[]>) {
   return routeList;
 }
 
-
 export function regexFolder(folder: any) {
   let dynamic = false;
 
   if (folder.startsWith('[')) {
-    folder = folder.replace(/\[(.*?)\]/, "$1")
-    dynamic = true
+    folder = folder.replace(/\[(.*?)\]/, '$1');
+    dynamic = true;
   }
 
   const regex = /(\w+)\.(\w+)/;
@@ -34,6 +35,7 @@ export function regexFolder(folder: any) {
 
   return {
     match,
-    dynamic: dynamic
-  }
+    name: match ? match[1] : '',
+    dynamic: dynamic,
+  };
 }
