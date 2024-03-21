@@ -12,7 +12,7 @@ A rest api write library as cute and tough as its name
 In the first step, let's define a /api/index.get.ts file and add this code block in it
 
 ```js
-// /api/index.get.ts
+// http://localhost:3000 (/api/index.get.ts) 
 
 import { ManpasiResponse, define } from '@/core/index'
 import { json } from '@/core/options'
@@ -39,14 +39,14 @@ Then let's send http://localhost:3000/ get request via curl or Postman. That's i
 Usage for POST
 
 ```js
-// /api/user/index.post.ts
+// http://localhost:3000/user?email=test@gmail.com (/api/user/index.post.ts)
 
 import { ManpasiResponse, define } from '@/core/index'
 import { json } from '@/core/options'
 import ManpasiHTTP from "@/types/http.type";
 
 export default define((req: ManpasiHTTP.request) => {
-  return ManpasiResponse(json(req.bodyData), {
+  return ManpasiResponse(json(req), {
     status: 200
   })
 })
@@ -54,8 +54,12 @@ export default define((req: ManpasiHTTP.request) => {
 
 ```json
 {
-    "name": "Jett Madison 2",
-    "age": "33"
+    "queryParams": {
+        "email": "test@gmail.com"
+    },
+    "bodyData": {
+        "name": "test"
+    }
 }
 ```
 
