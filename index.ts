@@ -1,15 +1,17 @@
-import path from 'path';
-import fs from 'fs/promises';
-import { Manpasi } from '@/core/index';
-import { regexFolder } from '@/core/options';
+import path from "path";
+import fs from "fs/promises";
+import { Manpasi } from "@/core/index";
+import { regexFolder } from "@/core/options";
 
 async function processFolder(
   dirname: string,
   folder: string,
-  parentFolder = ''
+  parentFolder: string = "",
 ) {
   const filePath = path.join(dirname, folder);
+
   const fileStats = await fs.stat(filePath);
+
   const matched = regexFolder(folder);
 
   if (matched.match) {
@@ -17,7 +19,7 @@ async function processFolder(
 
     return [
       {
-        name: `/${matched.match[1] === 'index' ? '' : matched.match[1]}`,
+        name: `/${matched.match[1] === "index" ? "api" : matched.match[1]}`,
         method: matched.match[2].toUpperCase(),
         file: file.default,
         dynamic: {
@@ -40,9 +42,9 @@ async function processFolder(
       const file = await import(subFilePath);
 
       return {
-        name: `/${folder}${
-          subFileMatched.match[1] === 'index'
-            ? ''
+        name: `/api/${folder}${
+          subFileMatched.match[1] === "index"
+            ? ""
             : `/${subFileMatched.match[1]}`
         }`,
         method: subFileMatched.match[2].toUpperCase(),
@@ -53,7 +55,7 @@ async function processFolder(
         },
         parentFolder: parentFolder || folder,
       };
-    })
+    }),
   );
 }
 
@@ -64,12 +66,12 @@ async function processFolder(
 
     const subDefineRoutes = (
       await Promise.all(
-        files.map((folder: any) => processFolder(dirname, folder))
+        files.map((folder: any) => processFolder(dirname, folder)),
       )
     ).flat();
 
     Manpasi(subDefineRoutes);
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 })();
