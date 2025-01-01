@@ -1,4 +1,4 @@
-import { ManpasiList } from '@/types/core.type';
+import { ManpasiList } from "@/types/core.type";
 
 export function json(data: any) {
   return JSON.stringify(data);
@@ -8,11 +8,11 @@ export function flatList(data: ManpasiList[]) {
   let routeList: any[] = [];
 
   function recursiveFlat(arr: any) {
-    for (let eleman of arr) {
-      if (Array.isArray(eleman)) {
-        recursiveFlat(eleman);
+    for (let el of arr) {
+      if (Array.isArray(el)) {
+        recursiveFlat(el);
       } else {
-        routeList.push(eleman);
+        routeList.push(el);
       }
     }
   }
@@ -25,8 +25,8 @@ export function flatList(data: ManpasiList[]) {
 export function regexFolder(folder: any) {
   let dynamic = false;
 
-  if (folder.startsWith('[')) {
-    folder = folder.replace(/\[(.*?)\]/, '$1');
+  if (folder.startsWith("[")) {
+    folder = folder.replace(/\[(.*?)\]/, "$1");
     dynamic = true;
   }
 
@@ -35,7 +35,7 @@ export function regexFolder(folder: any) {
 
   return {
     match,
-    name: match ? match[1] : '',
+    name: match ? match[1] : "",
     dynamic: dynamic,
   };
 }
